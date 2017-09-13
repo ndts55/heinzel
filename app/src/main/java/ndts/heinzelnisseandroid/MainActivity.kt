@@ -13,7 +13,7 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
     private val TAG = "Heinzel"
 
-    private lateinit var mainText: TextView
+    // private lateinit var mainText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        mainText = findViewById(R.id.main_text) as TextView
+        // mainText = findViewById(R.id.main_text) as TextView
     }
 
     private fun search(searchItem: String) {
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val onSuccess: (String) -> Unit = { result: String ->
-            mainText.text = result
+            val response = ResponseParser(applicationContext).parse(result)
+            // mainText.text = response.toString()
         }
 
         val onFailure: (Exception?) -> Unit = { e: Exception? ->

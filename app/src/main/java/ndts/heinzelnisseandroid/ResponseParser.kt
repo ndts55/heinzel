@@ -64,12 +64,12 @@ class ResponseParser(private val context: Context) {
         )
     }
 
-    private fun parsePhonetics(json: SafeJSONObject): Pair<List<String>?, List<String>?> = Pair(
+    private fun parsePhonetics(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
             json.getStringList(context.getString(R.string.deutsch_phonetics)),
             json.getStringList(context.getString(R.string.norsk_phonetics))
     )
 
-    private fun parseWords(json: SafeJSONObject): Pair<List<String>?, List<String>?> = Pair(
+    private fun parseWords(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
             json.getStringList(context.getString(R.string.bokmaal_words)),
             json.getStringList(context.getString(R.string.nynorsk_words))
     )

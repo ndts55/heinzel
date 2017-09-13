@@ -37,7 +37,7 @@ class SafeJSONObject(content: String) : JSONObject(content) {
         }
     }
 
-    fun getStringList(name: String): List<String>? {
+    fun getStringList(name: String): List<String> {
         return try {
             val arr = getJSONArray(name)
             val lst: ArrayList<String> = ArrayList()
@@ -48,7 +48,7 @@ class SafeJSONObject(content: String) : JSONObject(content) {
             }
             lst
         } catch (je: JSONException) {
-            null
+            ArrayList()
         }
     }
 }
