@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         mainText = findViewById(R.id.main_text) as TextView
     }
 
-
     private fun search(searchItem: String) {
         val doWork: () -> String = {
             val address = getString(R.string.api_template) + searchItem
@@ -64,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun norwegianFlag(): String = getByUnicode(0x1f1f3) + getByUnicode(0x1f1f4)
+
     private fun germanFlag(): String = getByUnicode(0x1f1e9) + getByUnicode(0x1f1ea)
 
     private fun getByUnicode(unicode: Int): String = String(Character.toChars(unicode))

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Heinzel</string>
+    <string name="action_search">Suche</string>
+    <string name="action_settings">Einstellungen</string>
+</resources>
