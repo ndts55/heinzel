@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Heinzel</string>
+
+    <!-- Menu -->
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
 
     <!-- Heinzelnisse JSON strings -->
     <string name="forum_questions">forumQuestions</string>
