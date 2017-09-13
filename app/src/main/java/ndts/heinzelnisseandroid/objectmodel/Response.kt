@@ -3,8 +3,8 @@ package ndts.heinzelnisseandroid.objectmodel
 class Response(private val searchItem: String,
                private val germanPhonetics: List<String>?,
                private val norwegianPhonetics: List<String>?,
-               private val nynorskWords: List<String>?,
                private val bokmaalWords: List<String>?,
+               private val nynorskWords: List<String>?,
                private val germanTranslations: List<TranslationEntry>?,
                private val norwegianTranslations: List<TranslationEntry>?) {
     override fun toString(): String {

@@ -4,14 +4,19 @@
 
     <!-- Heinzelnisse JSON strings -->
     <string name="forum_questions">forumQuestions</string>
+
+    <string name="search_item">searchItem</string>
+
     <string name="nynorsk_words">nynorskWords</string>
     <string name="bokmaal_words">bookmaalWords</string>
-    <string name="deutsch_phonetics">dePhonetics</string>
-    <string name="search_item">searchItem</string>
-    <string name="deutsch_translations">deTrans</string>
-    <string name="wiki_page_names">wikiPageNames</string>
+
     <string name="norsk_phonetics">noPhonetics</string>
+    <string name="deutsch_phonetics">dePhonetics</string>
+
     <string name="norsk_translations">noTrans</string>
+    <string name="deutsch_translations">deTrans</string>
+
+    <string name="wiki_page_names">wikiPageNames</string>
 
     <!-- TranslationEntry -->
     <string name="bokmaal_link">bokmaalLink</string>

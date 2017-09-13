@@ -14,5 +14,5 @@ class SafeJSONArray(content: String) : JSONArray(content) {
         }
     }
 
-    operator fun iterator(): Iterator<JSONObject> = (0 until length()).asSequence().map { get(it) as JSONObject }.iterator()
+    operator fun iterator(): Iterator<SafeJSONObject> = (0 until length()).asSequence().map { SafeJSONObject(get(it).toString()) }.iterator()
 }

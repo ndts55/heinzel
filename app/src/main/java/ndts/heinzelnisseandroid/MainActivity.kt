@@ -13,6 +13,8 @@ import com.inaka.killertask.KillerTask
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var maintext: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -21,14 +23,14 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val maintext = findViewById(R.id.main_text) as TextView
+        maintext = findViewById(R.id.main_text) as TextView
 
         val defaultsearchitem = "luft"
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { _ ->
             val onSuccess: (String) -> Unit = { result: String ->
-                maintext.text = result
+                callback(result)
             }
 
             val onFailed: (Exception?) -> Unit = { e: Exception? ->
@@ -44,6 +46,12 @@ class MainActivity : AppCompatActivity() {
 
             killerTask.go()
         }
+    }
+
+    fun callback(string: String) {
+        val parser = ResponseParser(applicationContext)
+        val response = parser.parse(string)
+        maintext.text = response.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

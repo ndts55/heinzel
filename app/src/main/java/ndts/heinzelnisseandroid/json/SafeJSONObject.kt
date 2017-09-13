@@ -42,7 +42,7 @@ class SafeJSONObject(content: String) : JSONObject(content) {
             val arr = getJSONArray(name)
             val lst: ArrayList<String> = ArrayList()
             if (arr != null) {
-                for (it: JSONObject in arr) {
+                for (it: SafeJSONObject in arr) {
                     lst.add(it.toString())
                 }
             }
