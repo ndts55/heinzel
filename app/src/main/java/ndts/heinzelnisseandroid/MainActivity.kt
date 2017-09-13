@@ -1,22 +1,19 @@
 package ndts.heinzelnisseandroid
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import com.inaka.killertask.KillerTask
 import java.net.URL
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity() {
+    private val TAG = "Heinzel"
 
-    lateinit var maintext: TextView
+    private lateinit var mainText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -26,55 +23,49 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        maintext = findViewById(R.id.main_text) as TextView
-
-        val fab = findViewById(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { defaultsearch() }
+        mainText = findViewById(R.id.main_text) as TextView
     }
 
-    fun defaultsearch() {
-        val onSuccess: (String) -> Unit = { result: String ->
-            callback(result)
-        }
 
-        val onFailed: (Exception?) -> Unit = { e: Exception? ->
-            Log.e("Heinzel", e.toString())
-        }
-
+    private fun search(searchItem: String) {
         val doWork: () -> String = {
-            val address = "https://heinzelnisse.info/searchResults?type=json&searchItem=luft"
+            val address = getString(R.string.api_template) + searchItem
             URL(address).readText()
         }
 
-        val killerTask = KillerTask(doWork, onSuccess, onFailed)
+        val onSuccess: (String) -> Unit = { result: String ->
+            mainText.text = result
+        }
 
-        killerTask.go()
-    }
+        val onFailure: (Exception?) -> Unit = { e: Exception? ->
+            Log.e(TAG, e?.toString())
+        }
 
-    fun callback(string: String) {
-        val parser = ResponseParser(applicationContext)
-        val response = parser.parse(string)
-        maintext.text = response.toString()
+        KillerTask(doWork, onSuccess, onFailure).go()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        (menu
-                .findItem(R.id.action_search)
-                .actionView as SearchView)
-                .setOnQueryTextListener(this)
+        val menuItem = menu.findItem(R.id.action_search)
+        (menuItem.actionView as SearchView)
+                .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        menuItem.collapseActionView()
+                        if (query != null) search(query)
+                        else Log.e(TAG, "query is null")
+
+                        return false
+                    }
+
+                    override fun onQueryTextChange(s: String?): Boolean = true
+                })
         return true
     }
 
-    // onQueryTextListener
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return if (query != null) {
-            Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
-            true
-        } else {
-            false
-        }
-    }
+    private fun norwegianFlag(): String = getByUnicode(0x1f1f3) + getByUnicode(0x1f1f4)
+    private fun germanFlag(): String = getByUnicode(0x1f1e9) + getByUnicode(0x1f1ea)
 
-    override fun onQueryTextChange(s: String?): Boolean = true
+    private fun getByUnicode(unicode: Int): String = String(Character.toChars(unicode))
+
 }
