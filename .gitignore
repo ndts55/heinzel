@@ -10,3 +10,6 @@
 out/
 gradlew
 gradlew.bat
+.idea/compiler.xml
+.idea/copyright/
+.idea/misc.xml
