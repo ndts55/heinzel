@@ -2,7 +2,6 @@ package ndts.heinzelnisseandroid.json
 
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 class SafeJSONArray(content: String) : JSONArray(content) {
 
