@@ -1,6 +1,6 @@
 package ndts.heinzelnisseandroid
 
-object Emoji {
+object Unicode {
     fun arrow(): String = getByUnicode(0x2192)
 
     fun norwegianFlag(): String = getByUnicode(0x1f1f3) + getByUnicode(0x1f1f4)

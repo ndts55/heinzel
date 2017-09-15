@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.ListFragment
-import ndts.heinzelnisseandroid.Emoji
+import ndts.heinzelnisseandroid.Unicode
 import ndts.heinzelnisseandroid.objectmodel.Response
 
 class CustomPagerAdapter(context: Context,
@@ -33,8 +33,8 @@ class CustomPagerAdapter(context: Context,
     override fun getCount(): Int = 2
 
     override fun getPageTitle(position: Int): CharSequence = when (position) {
-        0 -> Emoji.germanFlag() + Emoji.arrow() + Emoji.norwegianFlag()
-        1 -> Emoji.norwegianFlag() + Emoji.arrow() + Emoji.germanFlag()
+        0 -> Unicode.germanFlag() + Unicode.arrow() + Unicode.norwegianFlag()
+        1 -> Unicode.norwegianFlag() + Unicode.arrow() + Unicode.germanFlag()
         else -> ""
     }
 
