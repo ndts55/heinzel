@@ -14,7 +14,7 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "Heinzel"
-    lateinit var adapter: CustomPagerAdapter
+    private lateinit var adapter: CustomPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

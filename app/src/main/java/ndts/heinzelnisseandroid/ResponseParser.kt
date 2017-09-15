@@ -13,10 +13,10 @@ class ResponseParser(private val context: Context) {
         val translations = parseTranslations(json)
         val phonetics = parsePhonetics(json)
         val words = parseWords(json)
-        val searchitem = parseSearchItem(json)
+        val searchItem = parseSearchItem(json)
 
         return Response(
-                searchitem,
+                searchItem,
                 phonetics.first, // german
                 phonetics.second, // norwegian
                 words.first, // bokmål
@@ -46,23 +46,21 @@ class ResponseParser(private val context: Context) {
         return Pair(deList, noList)
     }
 
-    private fun parseEntry(json: SafeJSONObject): TranslationEntry {
-        return TranslationEntry(
-                json.getString("bokmaalLink"),
-                json.getString("grade"),
-                json.getInt("id"),
-                Word(
-                        json.getString("article"),
-                        json.getString("word"),
-                        json.getString("other")
-                ),
-                Word(
-                        json.getString("t_article"),
-                        json.getString("t_word"),
-                        json.getString("t_other")
-                )
-        )
-    }
+    private fun parseEntry(json: SafeJSONObject): TranslationEntry = TranslationEntry(
+            json.getString("bokmaalLink"),
+            json.getString("grade"),
+            json.getInt("id"),
+            Word(
+                    json.getString("article"),
+                    json.getString("word"),
+                    json.getString("other")
+            ),
+            Word(
+                    json.getString("t_article"),
+                    json.getString("t_word"),
+                    json.getString("t_other")
+            )
+    )
 
     private fun parsePhonetics(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
             json.getStringList(context.getString(R.string.deutsch_phonetics)),

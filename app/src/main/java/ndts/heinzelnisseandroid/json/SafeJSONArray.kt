@@ -5,12 +5,10 @@ import org.json.JSONException
 
 class SafeJSONArray(content: String) : JSONArray(content) {
 
-    override fun getJSONObject(index: Int): SafeJSONObject? {
-        return try {
-            SafeJSONObject(super.getJSONObject(index).toString())
-        } catch (je: JSONException) {
-            null
-        }
+    override fun getJSONObject(index: Int): SafeJSONObject? = try {
+        SafeJSONObject(super.getJSONObject(index).toString())
+    } catch (je: JSONException) {
+        null
     }
 
 

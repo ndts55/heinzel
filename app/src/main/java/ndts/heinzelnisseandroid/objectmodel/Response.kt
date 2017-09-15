@@ -25,7 +25,7 @@ class Response(private val searchItem: String,
         return bob.toString()
     }
 
-    public fun getGermanTranslations(): List<TranslationEntry> = germanTranslations
+    fun getGermanTranslations(): List<TranslationEntry> = germanTranslations
 
-    public fun getNorwegianTranslations(): List<TranslationEntry> = norwegianTranslations
+    fun getNorwegianTranslations(): List<TranslationEntry> = norwegianTranslations
 }

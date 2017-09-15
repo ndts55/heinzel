@@ -31,7 +31,7 @@ class CustomListAdapter(context: Context, private var items: List<TranslationEnt
 
     override fun getCount(): Int = items.size
 
-    public fun updateData(newItems: List<TranslationEntry>) {
+    fun updateData(newItems: List<TranslationEntry>) {
         items = newItems
         notifyDataSetChanged()
     }
