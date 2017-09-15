@@ -46,19 +46,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         val menuItem = menu.findItem(R.id.action_search)
-        (menuItem.actionView as SearchView)
-                .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchv = (menuItem.actionView as SearchView)
+        searchv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                menuItem.collapseActionView()
+                if (query != null) search(query)
+                else Log.e(TAG, "query is null")
 
-                    override fun onQueryTextSubmit(query: String?): Boolean {
-                        menuItem.collapseActionView()
-                        if (query != null) search(query)
-                        else Log.e(TAG, "query is null")
+                return false
+            }
 
-                        return false
-                    }
-
-                    override fun onQueryTextChange(s: String?): Boolean = true
-                })
+            override fun onQueryTextChange(s: String?): Boolean = true
+        })
+        searchv.maxWidth = Int.MAX_VALUE
         return true
     }
 
