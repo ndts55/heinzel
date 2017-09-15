@@ -45,9 +45,6 @@ dependencies {
     // KillerTask
     compile 'com.github.inaka:killertask:v1.4'
 
-    // Expandable RecyclerView
-    compile 'com.thoughtbot:expandablerecyclerview:1.3'
-    compile 'com.thoughtbot:expandablecheckrecyclerview:1.4'
 }
 repositories {
     mavenCentral()

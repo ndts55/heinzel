@@ -9,8 +9,4 @@ class TranslationEntry(private val link: String,
     override fun toString(): String = String.format(
             "Link:\t%s\nGrade:\t%s\nId:\t%d\nOriginal:\n%s\nTranslation:\n%s\n",
             link, grade, id, original.toString(), translation.toString())
-
-    public fun getOriginal(): Word = original
-
-    public fun getTranslation(): Word = translation
 }
