@@ -12,8 +12,6 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
     private val TAG = "Heinzel"
 
-    // private lateinit var mainText: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -21,8 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-
-        // mainText = findViewById(R.id.main_text) as TextView
     }
 
     private fun search(searchItem: String) {
@@ -33,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         val onSuccess: (String) -> Unit = { result: String ->
             val response = ResponseParser(applicationContext).parse(result)
-            // mainText.text = response.toString()
         }
 
         val onFailure: (Exception?) -> Unit = { e: Exception? ->
@@ -46,8 +41,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         val menuItem = menu.findItem(R.id.action_search)
-        val searchv = (menuItem.actionView as SearchView)
-        searchv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchView = (menuItem.actionView as SearchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 menuItem.collapseActionView()
                 if (query != null) search(query)
@@ -58,14 +53,8 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(s: String?): Boolean = true
         })
-        searchv.maxWidth = Int.MAX_VALUE
+        searchView.maxWidth = Int.MAX_VALUE
         return true
     }
-
-    private fun norwegianFlag(): String = getByUnicode(0x1f1f3) + getByUnicode(0x1f1f4)
-
-    private fun germanFlag(): String = getByUnicode(0x1f1e9) + getByUnicode(0x1f1ea)
-
-    private fun getByUnicode(unicode: Int): String = String(Character.toChars(unicode))
 
 }
