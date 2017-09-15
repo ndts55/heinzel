@@ -1,16 +1,20 @@
 package ndts.heinzelnisseandroid
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import com.inaka.killertask.KillerTask
+import ndts.heinzelnisseandroid.ui.CustomPagerAdapter
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "Heinzel"
+    lateinit var adapter: CustomPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -19,6 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
+
+        adapter = CustomPagerAdapter(applicationContext, supportFragmentManager)
+
+        val viewPager = findViewById(R.id.view_pager) as ViewPager
+        viewPager.adapter = adapter
+
+        (findViewById(R.id.tab_layout) as TabLayout).setupWithViewPager(viewPager)
     }
 
     private fun search(searchItem: String) {
@@ -29,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         val onSuccess: (String) -> Unit = { result: String ->
             val response = ResponseParser(applicationContext).parse(result)
+            adapter.updateData(response)
         }
 
         val onFailure: (Exception?) -> Unit = { e: Exception? ->
