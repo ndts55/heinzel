@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         val searchView = (menuItem.actionView as SearchView)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                menuItem.collapseActionView()
+                //menuItem.collapseActionView()
                 if (query != null) search(query)
                 else Log.e(TAG, "query is null")
 
