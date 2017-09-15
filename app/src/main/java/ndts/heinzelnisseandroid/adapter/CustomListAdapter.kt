@@ -1,4 +1,4 @@
-package ndts.heinzelnisseandroid.ui
+package ndts.heinzelnisseandroid.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

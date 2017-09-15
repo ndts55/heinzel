@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import com.inaka.killertask.KillerTask
-import ndts.heinzelnisseandroid.ui.CustomPagerAdapter
+import ndts.heinzelnisseandroid.adapter.CustomPagerAdapter
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
