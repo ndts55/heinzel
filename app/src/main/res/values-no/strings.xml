@@ -3,4 +3,6 @@
     <string name="app_name">Heinzel</string>
     <string name="action_search">Søk</string>
     <string name="action_settings">Instillinger</string>
+    <string name="no_result_message">ingen resultater</string>
+    <string name="waiting_message">Lasting...</string>
 </resources>

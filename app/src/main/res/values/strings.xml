@@ -35,4 +35,6 @@
     <string name="article">article</string>
     <string name="word">word</string>
     <string name="other">other</string>
+    <string name="no_result_message">no result</string>
+    <string name="waiting_message">Loading...</string>
 </resources>

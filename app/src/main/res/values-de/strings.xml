@@ -3,4 +3,6 @@
     <string name="app_name">Heinzel</string>
     <string name="action_search">Suche</string>
     <string name="action_settings">Einstellungen</string>
+    <string name="no_result_message">kein Ergebnis</string>
+    <string name="waiting_message">Lade...</string>
 </resources>
