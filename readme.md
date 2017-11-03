@@ -4,3 +4,4 @@ Learn more about the [Heinzelnisse REST API](https://www.heinzelnisse.info/wiki/
 
 Libraries used in this project:
 - [KillerTask](https://github.com/inaka/KillerTask)
+
