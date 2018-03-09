@@ -17,7 +17,7 @@ import ndts.heinzelnisseandroid.objectmodel.Response
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = "Heinzel"
+    private val tag = "Heinzel"
     private lateinit var adapter: CustomPagerAdapter
     private lateinit var progressbar: ProgressBar
     private lateinit var messagetextview: TextView
@@ -28,18 +28,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        progressbar = findViewById(R.id.loading_circle) as ProgressBar
-        messagetextview = findViewById(R.id.message_textview) as TextView
+        progressbar = findViewById(R.id.loading_circle)
+        messagetextview = findViewById(R.id.message_textview)
 
         adapter = CustomPagerAdapter(applicationContext, supportFragmentManager)
 
-        viewPager = findViewById(R.id.view_pager) as ViewPager
+        viewPager = findViewById(R.id.view_pager)
         viewPager.adapter = adapter
 
-        (findViewById(R.id.tab_layout) as TabLayout).setupWithViewPager(viewPager)
+        (findViewById<TabLayout>(R.id.tab_layout)).setupWithViewPager(viewPager)
     }
 
     private fun search(searchItem: String) {
@@ -49,12 +49,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val onSuccess: (String) -> Unit = { result: String ->
-            val response = ResponseParser(applicationContext).parse(result)
+            val response = ResponseParser().parse(result)
             handleResponse(response)
         }
 
         val onFailure: (Exception?) -> Unit = { e: Exception? ->
-            Log.e(TAG, e?.toString())
+            Log.e(tag, e?.toString())
         }
 
         // pre execute
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 //menuItem.collapseActionView()
                 if (query != null) search(query)
-                else Log.e(TAG, "query is null")
+                else Log.e(tag, "query is null")
                 return false
             }
 

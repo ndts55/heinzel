@@ -2,41 +2,6 @@
 <resources>
     <string name="app_name">Heinzel</string>
     <string name="action_search">Suche</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="waiting_message">Lade…</string>
 
-
-    <!-- Heinzelnisse JSON strings -->
-    <string name="forum_questions">forumQuestions</string>
-
-    <string name="search_item">searchItem</string>
-
-    <string name="nynorsk_words">nynorskWords</string>
-    <string name="bokmaal_words">bookmaalWords</string>
-
-    <string name="norsk_phonetics">noPhonetics</string>
-    <string name="deutsch_phonetics">dePhonetics</string>
-
-    <string name="norsk_translations">noTrans</string>
-    <string name="deutsch_translations">deTrans</string>
-
-    <string name="wiki_page_names">wikiPageNames</string>
-
-    <!-- TranslationEntry -->
-    <string name="bokmaal_link">bokmaalLink</string>
-    <string name="category">category</string>
-    <string name="grade">grade</string>
-    <string name="id">id</string>
-
-    <string name="translated_article">t_article</string>
-    <string name="translated_word">t_word</string>
-    <string name="translated_other">t_other</string>
-
-    <string name="article">article</string>
-    <string name="word">word</string>
-    <string name="other">other</string>
-
-    <string name="api_template">https://heinzelnisse.info/searchResults?type=json&amp;searchItem=</string>
     <string name="no_result_message">kein Ergebnis</string>
-
 </resources>

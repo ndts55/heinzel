@@ -1,12 +1,11 @@
 package ndts.heinzelnisseandroid
 
-import android.content.Context
 import ndts.heinzelnisseandroid.json.SafeJSONObject
 import ndts.heinzelnisseandroid.objectmodel.Response
 import ndts.heinzelnisseandroid.objectmodel.TranslationEntry
 import ndts.heinzelnisseandroid.objectmodel.Word
 
-class ResponseParser(private val context: Context) {
+class ResponseParser {
     fun parse(stringJSON: String): Response {
         val json = SafeJSONObject(stringJSON)
 
@@ -27,7 +26,7 @@ class ResponseParser(private val context: Context) {
     }
 
     private fun parseTranslations(json: SafeJSONObject): Pair<List<TranslationEntry>, List<TranslationEntry>> {
-        val deJson = json.getJSONArray(context.getString(R.string.deutsch_translations))
+        val deJson = json.getJSONArray("deTrans")
         val deList = ArrayList<TranslationEntry>()
         if (deJson != null) {
             for (elm: SafeJSONObject in deJson) {
@@ -35,7 +34,7 @@ class ResponseParser(private val context: Context) {
             }
         }
 
-        val noJson = json.getJSONArray(context.getString(R.string.norsk_translations))
+        val noJson = json.getJSONArray("noTrans")
         val noList = ArrayList<TranslationEntry>()
         if (noJson != null) {
             for (elm: SafeJSONObject in noJson) {
@@ -63,14 +62,14 @@ class ResponseParser(private val context: Context) {
     )
 
     private fun parsePhonetics(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
-            json.getStringList(context.getString(R.string.deutsch_phonetics)),
-            json.getStringList(context.getString(R.string.norsk_phonetics))
+            json.getStringList("dePhonetics"),
+            json.getStringList("noPhonetics")
     )
 
     private fun parseWords(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
-            json.getStringList(context.getString(R.string.bokmaal_words)),
-            json.getStringList(context.getString(R.string.nynorsk_words))
+            json.getStringList("bookmaalWords"),
+            json.getStringList("nynorskWords")
     )
 
-    private fun parseSearchItem(json: SafeJSONObject): String = json.getString(context.getString(R.string.search_item))
+    private fun parseSearchItem(json: SafeJSONObject): String = json.getString("searchItem")
 }
