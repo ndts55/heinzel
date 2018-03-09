@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.View
@@ -28,8 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         progressbar = findViewById(R.id.loading_circle)
         messagetextview = findViewById(R.id.message_textview)
@@ -43,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun search(searchItem: String) {
-        val doWork: () -> String = {
+        val callURL: () -> String = {
             val address = getString(R.string.api_template) + searchItem
             URL(address).readText()
         }
@@ -58,24 +56,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         // pre execute
-        showLoadingView()
-        KillerTask(doWork, onSuccess, onFailure).go()
+        messagetextview.hide()
+        viewPager.hide()
+        progressbar.show()
+
+        KillerTask(callURL, onSuccess, onFailure).go()
     }
 
     private fun handleResponse(response: Response) {
         val isDeEmpty = response.getGermanTranslations().isEmpty()
         val isNoEmpty = response.getNorwegianTranslations().isEmpty()
 
-        hideLoadingView()
+        progressbar.hide()
 
         if (isDeEmpty && isNoEmpty) {
             // no translations
-            showMessageView()
+            messagetextview.show()
         } else {
-            showPagerView()
+            viewPager.show()
             adapter.updateData(response)
 
-            if (isDeEmpty && !isNoEmpty){
+            if (isDeEmpty && !isNoEmpty) {
                 // switch to right tab
                 viewPager.currentItem = 1
             }
@@ -86,27 +87,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoadingView() {
-        messagetextview.visibility = View.GONE
-        viewPager.visibility = View.GONE
-        progressbar.visibility = View.VISIBLE
+    private fun View.show() {
+        visibility = View.VISIBLE
     }
 
-    private fun hideLoadingView() {
-        progressbar.visibility = View.GONE
-    }
-
-    private fun showMessageView() {
-        messagetextview.visibility = View.VISIBLE
-    }
-
-    private fun showPagerView() {
-        viewPager.visibility = View.VISIBLE
+    private fun View.hide() {
+        visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         val menuItem = menu.findItem(R.id.action_search)
+
         val searchView = (menuItem.actionView as SearchView)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -119,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(s: String?): Boolean = true
         })
         searchView.maxWidth = Int.MAX_VALUE
+
         return true
     }
 }

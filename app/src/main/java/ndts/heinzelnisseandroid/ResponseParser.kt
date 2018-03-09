@@ -5,6 +5,8 @@ import ndts.heinzelnisseandroid.objectmodel.Response
 import ndts.heinzelnisseandroid.objectmodel.TranslationEntry
 import ndts.heinzelnisseandroid.objectmodel.Word
 
+typealias TranslationListPair = Pair<List<TranslationEntry>, List<TranslationEntry>>
+
 class ResponseParser {
     fun parse(stringJSON: String): Response {
         val json = SafeJSONObject(stringJSON)
@@ -25,41 +27,41 @@ class ResponseParser {
         )
     }
 
-    private fun parseTranslations(json: SafeJSONObject): Pair<List<TranslationEntry>, List<TranslationEntry>> {
-        val deJson = json.getJSONArray("deTrans")
-        val deList = ArrayList<TranslationEntry>()
-        if (deJson != null) {
-            for (elm: SafeJSONObject in deJson) {
-                deList.add(parseEntry(elm))
+    private fun parseTranslations(json: SafeJSONObject): TranslationListPair =
+            Pair(
+                    parseSingleTranslation(json, "deTrans"),
+                    parseSingleTranslation(json, "noTrans")
+            )
+
+    private fun parseSingleTranslation(json: SafeJSONObject, name: String): List<TranslationEntry> {
+        val array = json.getJSONArray("noTrans")
+        val ret = ArrayList<TranslationEntry>()
+
+        if (array != null) {
+            for (entry: SafeJSONObject in array) {
+                ret.add(parseEntry(entry))
             }
         }
 
-        val noJson = json.getJSONArray("noTrans")
-        val noList = ArrayList<TranslationEntry>()
-        if (noJson != null) {
-            for (elm: SafeJSONObject in noJson) {
-                noList.add(parseEntry(elm))
-            }
-        }
-
-        return Pair(deList, noList)
+        return ret
     }
 
-    private fun parseEntry(json: SafeJSONObject): TranslationEntry = TranslationEntry(
-            json.getString("bokmaalLink"),
-            json.getString("grade"),
-            json.getInt("id"),
-            Word(
-                    json.getString("article"),
-                    json.getString("word"),
-                    json.getString("other")
-            ),
-            Word(
-                    json.getString("t_article"),
-                    json.getString("t_word"),
-                    json.getString("t_other")
+    private fun parseEntry(json: SafeJSONObject): TranslationEntry =
+            TranslationEntry(
+                    json.getString("bokmaalLink"),
+                    json.getString("grade"),
+                    json.getInt("id"),
+                    Word(
+                            json.getString("article"),
+                            json.getString("word"),
+                            json.getString("other")
+                    ),
+                    Word(
+                            json.getString("t_article"),
+                            json.getString("t_word"),
+                            json.getString("t_other")
+                    )
             )
-    )
 
     private fun parsePhonetics(json: SafeJSONObject): Pair<List<String>, List<String>> = Pair(
             json.getStringList("dePhonetics"),
