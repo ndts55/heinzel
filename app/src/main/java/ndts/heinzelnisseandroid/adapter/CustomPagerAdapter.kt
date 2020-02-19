@@ -1,16 +1,16 @@
 package ndts.heinzelnisseandroid.adapter
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.ListFragment
 import ndts.heinzelnisseandroid.Unicode
 import ndts.heinzelnisseandroid.objectmodel.Response
 
 class CustomPagerAdapter(context: Context,
                          fragmentManager: FragmentManager
-) : FragmentPagerAdapter(fragmentManager) {
+) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     lateinit var data: Response
 
     private val germanAdapter: CustomListAdapter = CustomListAdapter(context, ArrayList())

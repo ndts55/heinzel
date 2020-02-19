@@ -34,7 +34,7 @@ class ResponseParser {
             )
 
     private fun parseSingleTranslation(json: SafeJSONObject, name: String): List<TranslationEntry> {
-        val array = json.getJSONArray("noTrans")
+        val array = json.getJSONArray(name)
         val ret = ArrayList<TranslationEntry>()
 
         if (array != null) {
