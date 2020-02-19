@@ -11,7 +11,7 @@ import ndts.heinzelnisseandroid.objectmodel.Response
 class CustomPagerAdapter(context: Context,
                          fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    lateinit var data: Response
+    private lateinit var data: Response
 
     private val germanAdapter: CustomListAdapter = CustomListAdapter(context, ArrayList())
     private val germanFragment: ListFragment = ListFragment()

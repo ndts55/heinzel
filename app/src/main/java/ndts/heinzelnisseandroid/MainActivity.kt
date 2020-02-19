@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val tag = "Heinzel"
     private lateinit var adapter: CustomPagerAdapter
     private lateinit var progressbar: ProgressBar
-    private lateinit var messagetextview: TextView
+    private lateinit var messageTextView: TextView
     private lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         progressbar = findViewById(R.id.loading_circle)
-        messagetextview = findViewById(R.id.message_textview)
+        messageTextView = findViewById(R.id.message_textview)
 
         adapter = CustomPagerAdapter(applicationContext, supportFragmentManager)
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // pre execute
-        messagetextview.hide()
+        messageTextView.hide()
         viewPager.hide()
         progressbar.show()
 
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         if (isDeEmpty && isNoEmpty) {
             // no translations
-            messagetextview.show()
+            messageTextView.show()
         } else {
             viewPager.show()
             adapter.updateData(response)

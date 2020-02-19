@@ -12,7 +12,7 @@ import ndts.heinzelnisseandroid.objectmodel.TranslationEntry
 
 class CustomListAdapter(context: Context, private var items: List<TranslationEntry>) : ArrayAdapter<TranslationEntry>(context, -1, items) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         val itemView: View
